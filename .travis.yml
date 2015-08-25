@@ -1,5 +1,7 @@
 language: ruby
 cache: bundler
+services:
+  - memcached
 rvm:
 - 2.2.2
 - 2.1.6
