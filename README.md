@@ -1,6 +1,8 @@
 Rack::Cache
 ===========
 
+![Build status](https://travis-ci.org/mezis/rack-cache.svg?branch=master)
+
 Rack::Cache is suitable as a quick drop-in component to enable HTTP caching for
 Rack-based applications that produce freshness (Expires, Cache-Control) and/or
 validation (Last-Modified, ETag) information:
@@ -62,7 +64,7 @@ Using with Rails
 
 Add this to your `config/environment.rb`:
 
-   config.middleware.use Rack::Cache,
+    config.middleware.use Rack::Cache,
        :verbose => true,
        :metastore   => 'file:/var/cache/rack/meta',
        :entitystore => 'file:/var/cache/rack/body'
@@ -103,6 +105,7 @@ GitHub:
 License
 -------
 
+```
 Copyright (c) 2008 Ryan Tomayko <http://tomayko.com/about>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -121,3 +124,4 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
 THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+```
