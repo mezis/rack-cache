@@ -1,0 +1,10 @@
+language: ruby
+cache: bundler
+services:
+  - memcached
+rvm:
+- 2.2.2
+- 2.1.6
+- 2.0.0
+- 1.9.3
+script: rake test
