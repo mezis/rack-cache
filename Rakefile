@@ -1,14 +1,10 @@
 require 'rake/clean'
+require 'bundler/gem_tasks'
 
 task :default => [:setup, :test]
 
 CLEAN.include %w[coverage/ doc/api tags]
 CLOBBER.include %w[dist]
-
-desc "Install gem dependencies"
-task :setup do
-  sh "bundle check >/dev/null || bundle install", :verbose => false
-end
 
 # SPECS =====================================================================
 
@@ -82,41 +78,6 @@ end
 desc 'Start the documentation development server (requires thin)'
 task 'doc:server' do
   sh 'cd doc && thin --rackup server.ru --port 3035 start'
-end
-
-# PACKAGING =================================================================
-
-if defined?(Gem)
-  # load gemspec
-  $spec = eval(File.read('rack-cache.gemspec'))
-
-  def package(ext='')
-    "dist/rack-cache-#{$spec.version}" + ext
-  end
-
-  desc 'Build packages'
-  task :package => %w[.gem .tar.gz].map {|e| package(e)}
-
-  desc 'Build and install as local gem'
-  task :install => package('.gem') do
-    sh "gem install #{package('.gem')}"
-  end
-
-  directory 'dist/'
-
-  file package('.gem') => %w[dist/ rack-cache.gemspec] + $spec.files do |f|
-    sh "gem build rack-cache.gemspec"
-    mv File.basename(f.name), f.name
-  end
-
-  file package('.tar.gz') => %w[dist/] + $spec.files do |f|
-    sh "git archive --format=tar HEAD | gzip > #{f.name}"
-  end
-
-  desc 'Upload gem to gemcutter.org'
-  task 'release' => [package('.gem')] do |t|
-    sh "gem push #{package('.gem')}"
-  end
 end
 
 # GEMSPEC ===================================================================
