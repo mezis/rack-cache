@@ -2,14 +2,16 @@ Gem::Specification.new do |s|
   s.specification_version = 2 if s.respond_to? :specification_version=
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
 
-  s.name = 'rack-cache'
-  s.version = '1.2'
-  s.date = '2012-03-05'
+  s.name = 'rack-cache-mezis'
+  s.version = '1.2.1'
+  s.date = '2015-08-25'
+
+  s.licenses = %w[MIT]
 
   s.summary     = "HTTP Caching for Rack"
   s.description = "Rack::Cache is suitable as a quick drop-in component to enable HTTP caching for Rack-based applications that produce freshness (Expires, Cache-Control) and/or validation (Last-Modified, ETag) information."
 
-  s.authors = ["Ryan Tomayko"]
+  s.authors = ["Julien Letessier", "Ryan Tomayko"]
   s.email = "r@tomayko.com"
 
   # = MANIFEST =
@@ -61,11 +63,11 @@ Gem::Specification.new do |s|
   s.test_files = s.files.select {|path| path =~ /^test\/.*_test.rb/}
 
   s.extra_rdoc_files = %w[README COPYING TODO CHANGES]
-  s.add_dependency 'rack', '>= 0.4'
+  s.add_dependency 'rack', '~> 1'
 
-  s.add_development_dependency 'bacon'
-  s.add_development_dependency 'memcached'
-  s.add_development_dependency 'dalli'
+  s.add_development_dependency 'bacon', '~> 1'
+  s.add_development_dependency 'memcached', '~> 1'
+  s.add_development_dependency 'dalli', '~> 2'
 
   s.has_rdoc = true
   s.homepage = "http://rtomayko.github.com/rack-cache/"
